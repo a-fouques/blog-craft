@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
+import { Blog } from 'src/blog/blog.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from 'typeorm';
 
 export type UserRole = 'user' | 'admin';
 
@@ -24,4 +25,7 @@ export class User {
 
   @Column({ default: 'user' })
   role: UserRole;
+
+  @OneToMany(() => Blog, (blog) => blog.author)
+  blogs: Blog[];
 }

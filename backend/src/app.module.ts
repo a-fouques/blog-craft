@@ -6,9 +6,6 @@ import { AuthModule } from './auth/auth.module';
 import { BlogModule } from './blog/blog.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './auth/roles.guard';
-import { UserController } from './user/user.controller';
 
 @Module({
   imports: [
@@ -22,13 +19,12 @@ import { UserController } from './user/user.controller';
         synchronize: true,
       }),
     }),
-    
-    UserModule, AuthModule, BlogModule],
+    UserModule, 
+    AuthModule, 
+    BlogModule],
   controllers: [AppController],
-  providers: [{
-    provide: APP_GUARD,
-    useClass: RolesGuard,
-  },
-  AppService],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule {}
