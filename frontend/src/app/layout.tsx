@@ -1,5 +1,6 @@
 'use client';
 
+import Header from '@/components/Header';
 import { AuthProvider } from '../contexts/AuthContext';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -7,7 +8,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <body>
         <AuthProvider>
-          {children}
+          <Header />
+            <main style={{ padding: '2rem' }}>
+              {children}
+            </main>
         </AuthProvider>
       </body>
     </html>
