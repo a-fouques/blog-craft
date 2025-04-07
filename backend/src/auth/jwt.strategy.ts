@@ -2,25 +2,24 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Request } from 'express';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  constructor(private readonly userService: UserService) {
     super({
-        jwtFromRequest: ExtractJwt.fromExtractors([
-            (req: Request) => {
-              const token = req?.cookies?.jwt;
-              console.log('→ JWT dans cookie :', token); // 👈 Ajoute ce log
-              return token;
-            },
-          ]),
-      ignoreExpiration: false,
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req: Request) => req?.cookies?.jwt,
+      ]),
       secretOrKey: process.env.JWT_SECRET || 'supersecret',
     });
   }
 
   async validate(payload: any) {
-    console.log('→ Payload JWT validé :', payload);
-    return { userId: payload.sub };
+    const user = await this.userService.findById(payload.sub);
+    if (!user) {
+      throw new Error('Utilisateur non trouvé');
+    }
+    return user;
   }
 }

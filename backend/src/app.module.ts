@@ -19,9 +19,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         synchronize: true,
       }),
     }),
-    
-    UserModule, AuthModule, BlogModule],
+    UserModule, 
+    AuthModule, 
+    BlogModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule {}

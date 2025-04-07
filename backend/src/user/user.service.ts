@@ -34,4 +34,28 @@ export class UserService {
         }
         return this.repo.remove(user);
       }
+    
+    async update(id: number, data: Partial<User>) {
+      const user = await this.findById(id);
+      if (!user) {
+        throw new Error(`Utilisateur avec l'id ${id} non trouvé`);
+      }
+      Object.assign(user, data);
+      return this.repo.save(user);
+    }
+    
+    async changePassword(id: number, currentPassword: string, newPassword: string) {
+      const user = await this.findById(id);
+      if (!user) {
+        throw new Error(`Utilisateur avec l'id ${id} non trouvé`);
+      }
+      console.log("ID reçu :", id);
+      console.log("user retourné par findById :", user);
+      const isMatch = await bcrypt.compare(currentPassword, user.password);
+      if (!isMatch) throw new Error('Mot de passe actuel incorrect');
+    
+      user.password = await bcrypt.hash(newPassword, 10);
+      return this.repo.save(user);
+    }
+    
 }
