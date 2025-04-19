@@ -2,12 +2,13 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { api } from '../services/api';
-console.log('API instance:', api);
 
 interface User {
   id: number;
   email: string;
   role: string;
+  firstname: string;
+  lastname: string;
   // autres champs
 }
 

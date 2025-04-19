@@ -7,7 +7,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: 'http://localhost:3001', // ← URL de ton frontend Next.js
+    origin: 'http://localhost:3002', // ← URL de ton frontend Next.js
     credentials: true,              // 🔥 obligatoire pour les cookies
   });
   

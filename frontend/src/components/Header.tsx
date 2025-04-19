@@ -25,8 +25,15 @@ export default function Header() {
         {user ? (
           <>
             <span style={{ marginRight: '1rem' }}>
-              Connecté en tant que <strong>{user.email}</strong>
+              Connecté en tant que <strong>{user.email}  </strong>
+              
             </span>
+            <span>
+              <Link href="/profile" style={{ textDecoration: 'none', color: '#333' }}>
+                  Mon Profil
+              </Link>
+            </span>
+            
             <LogoutButton />
           </>
         ) : (
