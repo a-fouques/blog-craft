@@ -9,9 +9,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AuthProvider>
           <Header />
-            <main style={{ padding: '2rem' }}>
-              {children}
-            </main>
+          <main style={{ padding: '2rem' }}>
+            {children}
+          </main>
         </AuthProvider>
       </body>
     </html>
