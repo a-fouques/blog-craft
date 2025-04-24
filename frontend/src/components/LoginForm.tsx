@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import Button from './Button';
+
+import styles from '../styles/components/LoginForm.module.css';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -27,43 +30,37 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Email :</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{ width: '100%', padding: '0.5rem' }}
-        />
+    <div className={styles.wrapper}>
+      <div className={styles.overlay}></div>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Connexion à votre compte</h2>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className={styles.input}
+          />
+
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={styles.input}
+          />
+
+          {error && <p className={styles.error}>{error}</p>}
+
+          <Button type="submit">Se connecter</Button>
+        </form>
       </div>
-      <div style={{ marginTop: '1rem' }}>
-        <label>Mot de passe :</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: '100%', padding: '0.5rem' }}
-        />
-      </div>
-      {error && (
-        <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>
-      )}
-      <button
-        type="submit"
-        style={{
-          marginTop: '1.5rem',
-          padding: '0.5rem 1rem',
-          backgroundColor: '#0070f3',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        Se connecter
-      </button>
-    </form>
+    </div>
   );
 }

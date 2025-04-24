@@ -1,0 +1,84 @@
+/* styles/components/Header.module.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--color-bg-alt);
+    box-shadow: var(--shadow-sm);
+    border-bottom: var(--border-thin);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-family-heading);
+    font-size: var(--fs-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .logoImg {
+    width: 120px;
+    height: 70px;
+    object-fit: contain;
+  }
+  
+  .nav {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+  }
+  
+  .navLink {
+    font-size: var(--fs-base);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .navLink:hover {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+  }
+  
+  
+
+
+  .authZone {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+  
+  .authLink {
+    background-color: var(--color-primary);
+    color: white;
+    font-size: var(--fs-base);
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  
+  .authLink:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+  }
+  
+  .emailText {
+    margin-right: var(--space-sm);
+    font-weight: 500;
+  }
+  

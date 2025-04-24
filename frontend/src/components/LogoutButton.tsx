@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { api } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import Button from './Button';
 
 export default function LogoutButton() {
   const { setUser } = useAuth();
@@ -19,18 +20,8 @@ export default function LogoutButton() {
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      style={{
-        padding: '0.5rem 1rem',
-        backgroundColor: 'red',
-        color: 'white',
-        border: 'none',
-        borderRadius: '0.5rem',
-        cursor: 'pointer',
-      }}
-    >
+    <Button variant="secondary" onClick={handleLogout}>
       Se déconnecter
-    </button>
+    </Button>
   );
 }

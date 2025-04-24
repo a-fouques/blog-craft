@@ -4,44 +4,37 @@ import Link from 'next/link';
 import { useAuth } from '../contexts/AuthContext';
 import LogoutButton from './LogoutButton';
 
+import styles from '../styles/components/Header.module.css';
 export default function Header() {
   const { user } = useAuth();
 
   return (
-    <header style={{
-      padding: '1rem',
-      backgroundColor: '#f4f4f4',
-      borderBottom: '1px solid #ddd',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
-      <h1>
-        <Link href="/" style={{ textDecoration: 'none', color: '#333' }}>
-          BlogCraft
-        </Link>
-      </h1>
-      <nav>
-        {user ? (
-          <>
-            <span style={{ marginRight: '1rem' }}>
-              Connecté en tant que <strong>{user.email}  </strong>
-              
-            </span>
-            <span>
-              <Link href="/profile" style={{ textDecoration: 'none', color: '#333' }}>
-                  Mon Profil
-              </Link>
-            </span>
-            
-            <LogoutButton />
-          </>
-        ) : (
-          <>
-            <Link href="/login" style={{ marginRight: '1rem' }}>Connexion</Link>
-            <Link href="/register">Inscription</Link>
-          </>
-        )}
+
+    <header className={styles.header}>
+      <Link href="/" className={styles.logo}>
+        <img src="/logo.png" alt="Logo BlogCraft" className={styles.logoImg} />
+      </Link>
+
+      <nav className={styles.nav}>
+        <Link href="/blogs" className={styles.navLink}>Blogs</Link>
+        <Link href="/about" className={styles.navLink}>À propos</Link>
+
+        <div className={styles.authZone}>
+          {user ? (
+            <>
+              <span className={styles.emailText}>
+                Connecté en tant que <strong>{user.email}</strong>
+              </span>
+              <Link href="/profile" className={styles.authLink}>Mon Profil</Link>
+              <LogoutButton />
+            </>
+          ) : (
+            <>
+              <Link href="/login" className={styles.authLink}>Connexion</Link>
+              <Link href="/register" className={styles.authLink}>Inscription</Link>
+            </>
+          )}
+        </div>
       </nav>
     </header>
   );
